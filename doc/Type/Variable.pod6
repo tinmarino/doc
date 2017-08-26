@@ -23,7 +23,7 @@ Returns the name of the variable, including the sigil.
 
 =head2 X<trait is default|trait,is default (Variable)>
 
-    multi sub trait_mod:<is>(Variable:D, :$default!)
+    multi trait_mod:<is>(Variable:D, :$default!)
 
 Sets the default value with which a variable is initialized, and to which it
 is reset when Nil is assigned to it. Trait arguments are evaluated at compile
@@ -40,7 +40,7 @@ called by hand.
 
 =head2 trait is dynamic
 
-    multi sub trait_mod:<is>(Variable:D, :$dynamic)
+    multi trait_mod:<is>(Variable:D, :$dynamic)
 
 Marks a variable as dynamic, that is, accessible from inner dynamic scopes
 without being in an inner lexical scope.
@@ -60,7 +60,7 @@ introspect;         # OUTPUT: «23␤»
 
 =head2 trait of
 
-    multi sub trait_mod:<of>(Mu:U $target, Mu:U $type)
+    multi trait_mod:<of>(Mu:U $target, Mu:U $type)
 
 Sets the type constraint of a container bound to a variable.
 

@@ -96,8 +96,8 @@ backtrace.
 
 Defined as:
 
-    multi sub    fail(*@text)
-    multi sub    fail(Exception $e)
+    multi  fail(*@text)
+    multi  fail(Exception $e)
     method fail(Exception:D:)
 
 Exits the calling C<Routine> and returns a L<Failure> object wrapping the
@@ -131,9 +131,9 @@ a newline.
 
 Defined as:
 
-    multi sub die(*@message)
-    multi sub die(Exception:D $e)
-    method    die(Exception:D:)
+    multi  die(*@message)
+    multi  die(Exception:D $e)
+    method die(Exception:D:)
 
 Throws a fatal C<Exception>. The default exception handler prints each
 element of the list to C<$*ERR> (STDERR).
@@ -145,7 +145,7 @@ die "Important reason";
 
 Defined as:
 
-    multi sub warn(*@message)
+    multi warn(*@message)
 
 Throws a resumable warning exception, which is considered a control
 exception, and hence is invisible to most normal exception handlers.  The

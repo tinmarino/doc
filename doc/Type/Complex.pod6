@@ -138,7 +138,7 @@ number, using L<Real.truncate|/type/Real#method_truncate>, and returns the resul
 Defined as:
 
     method abs(Complex:D: --> Num:D)
-    multi sub abs(Complex:D $z --> Num:D)
+    multi abs(Complex:D $z --> Num:D)
 
 Returns the absolute value of the invocant (or the argument in sub form).
 For a given complex number C<$z> the absolute value C<|$z|> is defined as

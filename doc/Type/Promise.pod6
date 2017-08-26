@@ -252,8 +252,8 @@ or C<quit> with the C<cause> if the L<Promise> is Broken.
 
 =head2 sub await
 
-    multi sub await(Promise:D)
-    multi sub await(*@)
+    multi await(Promise:D)
+    multi await(*@)
 
 Waits until one or more promises are I<all> fulfilled, and then returns their
 values. Also works on L<channels|/type/Channel>. Any broken promises will

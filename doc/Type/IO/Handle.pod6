@@ -128,7 +128,7 @@ L«C<.lines>|/type/IO::Handle#method_lines» methods.
 Defined as:
 
     method get(IO::Handle:D: --> Str:D)
-    multi sub get (IO::Handle $fh = $*ARGFILES --> Str:D)
+    multi get (IO::Handle $fh = $*ARGFILES --> Str:D)
 
 Reads a single line of input from the handle, removing the trailing newline
 characters (as set by L«C<.nl-in>|/routine/nl-in»)
@@ -156,7 +156,7 @@ say get;                   # Read one line from $*ARGFILES
 Defined as:
 
     method getc(IO::Handle:D: --> Str:D)
-    multi sub getc (IO::Handle $fh = $*ARGFILES --> Str:D)
+    multi getc (IO::Handle $fh = $*ARGFILES --> Str:D)
 
 Reads a single character from the input stream. Attempting to call this method
 when the handle is L<in binary mode|/type/IO::Handle#method_encoding> will
@@ -683,7 +683,7 @@ say "foo".IO.open.path; # OUTPUT: «"foo".IO␤»
 Defined as:
 
     method close(IO::Handle:D: --> Bool:D)
-    multi sub close(IO::Handle $fh)
+    multi close(IO::Handle $fh)
 
 Closes an open file handle. It's not an error to call C<close> on an
 already-closed filehandle. Returns C<True> on success. If you close

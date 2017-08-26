@@ -115,7 +115,7 @@ make such bugs much more evident (rather than only observed under stress).
 
 Defined as:
 
-    multi sub atomic-assign($target is rw, $value)
+    multi atomic-assign($target is rw, $value)
 
 Performs an atomic assignment of C<$value> into the C<Scalar> C<$target>. The
 C<atomic-assign> routine ensures that any required barriers are performed such
@@ -123,7 +123,7 @@ that the changed value will be "published" to other threads.
 
 =head2 atomic-fetch
 
-    multi sub atomic-fetch($target is rw)
+    multi atomic-fetch($target is rw)
 
 Performs an atomic read of the value in the C<Scalar> C<$target> and returns
 the read value. Using this routine instead of simply using the variable
@@ -149,8 +149,8 @@ never terminate.
 
 Defined as:
 
-    multi sub cas($target is rw, $expected, $value)
-    multi sub cas($target is rw, &operation)
+    multi cas($target is rw, $expected, $value)
+    multi cas($target is rw, &operation)
 
 Performs an atomic compare and swap of the value in the C<Scalar> C<$target>.
 The first form has semantics like:
@@ -211,7 +211,7 @@ each value ranging from 0 up to 999.
 
 =head2 infix ⚛=
 
-    multi sub infix:<⚛=>($target is rw, $value)
+    multi infix:<⚛=>($target is rw, $value)
 
 Performs an atomic assignment of C<$value> into the C<Scalar> C<$target>. The
 C<⚛=> operator ensures that any required barriers are performed such that the
@@ -219,7 +219,7 @@ changed value will be "published" to other threads.
 
 =head2 prefix ⚛
 
-    multi sub prefix:<⚛>($target is rw)
+    multi prefix:<⚛>($target is rw)
 
 Performs an atomic read of the value in the C<Scalar> C<$target> and returns
 the read value. Using this operator instead of simply using the variable

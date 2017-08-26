@@ -18,7 +18,7 @@ L<subscripts|/language/subscripts>.
 
 Defined as:
 
-    multi sub    pop(Array:D )
+    multi        pop(Array:D )
     multi method pop(Array:D:)
 
 Removes and returns the last item from the array.  Fails for an empty array.
@@ -36,7 +36,7 @@ Example:
 
 Defined as:
 
-    multi sub    push(Array:D, **@values --> Array:D)
+    multi        push(Array:D, **@values --> Array:D)
     multi method push(Array:D: **@values --> Array:D)
 
 Adds the C<@values> to the end of the array, and returns the modified list.
@@ -159,7 +159,7 @@ Example:
 
 Defined as:
 
-    multi sub    unshift(Array:D, **@values --> Array:D)
+    multi        unshift(Array:D, **@values --> Array:D)
     multi method unshift(Array:D: **@values --> Array:D)
 
 Adds the C<@values> to the start of the array, and returns the modified array.

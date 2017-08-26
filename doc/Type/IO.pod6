@@ -161,7 +161,7 @@ By default, only C<:d> test is performed.
 
 Defined as:
 
-    multi sub print(**@args --> True)
+    multi print(**@args --> True)
 
 Prints the given text on standard output (the
 L«C<$*OUT>|/language/variables#index-entry-%24%2AOUT» file handle), coercing
@@ -178,7 +178,7 @@ To print text and include the trailing newline, use L«C<put>|/type/IO#sub_put»
 
 Defined as:
 
-    multi sub put(**@args --> True)
+    multi put(**@args --> True)
 
 Same as L«C<print>|/type/IO#sub_print», except appends
 L«C<$*OUT.nl-out>|/type/IO::Handle#method_nl-out» (a newline, by default) at
@@ -192,7 +192,7 @@ the end:
 
 Defined as:
 
-    multi sub say(**@args --> True)
+    multi say(**@args --> True)
 
 Prints the "gist" of given objects. Same as L«C<put>|/type/IO#sub_put», except
 coerces non-L<Str> arguments using L«C<.gist>|/routine/gist» method.
@@ -212,9 +212,9 @@ you most likely want to use L«C<put>|/type/IO#sub_put» instead.
 Defined as:
 
     method note(Mu: -->Bool:D)
-    multi sub note(            --> Bool:D)
-    multi sub note(Str:D $note --> Bool:D)
-    multi sub note(**@args     --> Bool:D)
+    multi note(            --> Bool:D)
+    multi note(Str:D $note --> Bool:D)
+    multi note(**@args     --> Bool:D)
 
 Like L«C<say>|/routine/say», except prints output to L«C<$*ERR>|/language/variables#index-entry-%24%2AERR» handle (STDERR).
 If no arguments are given to subroutine forms, will use string C<"Noted">.
@@ -243,7 +243,7 @@ say "Hi, $name! Nice to meet you!";
 
 =head2 sub open
 
-    multi sub open(IO() $path, |args --> IO::Handle:D)
+    multi open(IO() $path, |args --> IO::Handle:D)
 
 Creates L<a handle|/type/IO::Handle> with the given C<$path>, and calls
 L«C<IO::Handle.open>|/type/IO::Handle», passing any of the remaining arguments

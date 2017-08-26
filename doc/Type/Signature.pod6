@@ -625,7 +625,7 @@ X<|Long Names>
 To exclude certain parameters from being considered in multiple dispatch,
 separate them with a double semi-colon.
 
-    multi sub f(Int $i, Str $s;; :$b) { dd $i, $s, $b };
+    multi f(Int $i, Str $s;; :$b) { dd $i, $s, $b };
     f(10, 'answer');
     # OUTPUT: «10␤"answer"␤Any $b = Any␤»
 

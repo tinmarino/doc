@@ -182,8 +182,8 @@ over the values from the Channel.
 
 Defined as:
 
-    multi sub await(Channel:D)
-    multi sub await(*@)
+    multi await(Channel:D)
+    multi await(*@)
 
 Waits until all of one or more channels has a value available, and returns
 those values (it calls C<.receive> on the channel). Also works with

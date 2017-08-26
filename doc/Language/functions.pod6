@@ -338,8 +338,8 @@ This can be achieved by using a slurpy with a C<+> or C<+@> instead of C<**>:
 
 ...which is shorthand for something very close to:
 
-    multi sub grab(**@a) { "grab $_".say for @a }
-    multi sub grab(\a) {
+    multi grab(**@a) { "grab $_".say for @a }
+    multi grab(\a) {
         a ~~ Iterable and a.VAR !~~ Scalar ?? nextwith(|a) !! nextwith(a,)
     }
 
@@ -663,7 +663,7 @@ name like C<is>, C<does> or C<handles>. It receives the modified thing as
 argument, and the name as a named argument. See L<Sub|/type/Sub#Traits> for details.
 
 =begin code
-multi sub trait_mod:<is>(Routine $r, :$doubles!) {
+multi trait_mod:<is>(Routine $r, :$doubles!) {
     $r.wrap({
         2 * callsame;
     });

@@ -435,8 +435,8 @@ not have additional semantics.
 In an argument list, putting parenthesis around an argument prevents it from
 being interpreted as a named argument.
 
-    multi sub p(:$a!) { say 'named'      }
-    multi sub p($a)   { say 'positional' }
+    multi p(:$a!) { say 'named'      }
+    multi p($a)   { say 'positional' }
     p a => 1;           # OUTPUT: «named␤»
     p (a => 1);         # OUTPUT: «positional␤»
 
@@ -690,7 +690,7 @@ class or role, even after it has been redefined in the child class.
 
 =head2 prefix X<C«++»|++>
 
-    multi sub prefix:<++>($x is rw) is assoc<non>
+    multi prefix:<++>($x is rw) is assoc<non>
 
 Increments its argument by one, and returns the updated value.X<|increment operator>
 
@@ -704,7 +704,7 @@ semantics.
 
 =head2 prefix X<C«--»|-->
 
-    multi sub prefix:<-->($x is rw) is assoc<non>
+    multi prefix:<-->($x is rw) is assoc<non>
 
 Decrements its argument by one, and returns the updated value.X<|decrement operator>
 
@@ -719,7 +719,7 @@ semantics.
 
 =head2 postfix X<C«++»|++>
 
-    multi sub postfix:<++>($x is rw) is assoc<non>
+    multi postfix:<++>($x is rw) is assoc<non>
 
 Increments its argument by one, and returns the original value.X<|increment operator>
 
@@ -747,7 +747,7 @@ assign the resulting string to the container. A C<is rw>-container is required.
 
 =head2 postfix C«--»
 
-    multi sub postfix:<-->($x is rw) is assoc<non>
+    multi postfix:<-->($x is rw) is assoc<non>
 
 Decrements its argument by one, and returns the original value.X<|decrement operator>
 
@@ -778,7 +778,7 @@ Crossing 0 is prohibited and throws C<X::AdHoc>.
 
 =head2 infix C«**»
 
-    multi sub infix:<**>(Any, Any --> Numeric:D) is assoc<right>
+    multi infix:<**>(Any, Any --> Numeric:D) is assoc<right>
 
 The X<exponentiation operator> coerces both arguments to L<Numeric>
 and calculates the left-hand-side raised to the power of the right-hand side.
@@ -791,7 +791,7 @@ is carried out without loss of precision.
 
 =head2 prefix C«?»
 
-    multi sub prefix:<?>(Mu --> Bool:D)
+    multi prefix:<?>(Mu --> Bool:D)
 
 X<Boolean context operator>.
 
@@ -800,7 +800,7 @@ Note that this collapses L<Junction>s.
 
 =head2 prefix C«!»
 
-    multi sub prefix:<!>(Mu --> Bool:D)
+    multi prefix:<!>(Mu --> Bool:D)
 
 X<Negated boolean context operator>.
 
@@ -810,7 +810,7 @@ Note that this collapses L<Junction>s.
 
 =head2 prefix C«+»
 
-    multi sub prefix:<+>(Any --> Numeric:D)
+    multi prefix:<+>(Any --> Numeric:D)
 
 X<Numeric context operator>.
 
@@ -818,7 +818,7 @@ Coerces the argument to L<Numeric> by calling the C<Numeric> method on it.
 
 =head2 prefix C«-»
 
-    multi sub prefix:<->(Any --> Numeric:D)
+    multi prefix:<->(Any --> Numeric:D)
 
 X<Negative numeric context operator>.
 
@@ -827,7 +827,7 @@ and then negates the result.
 
 =head2 prefix C«~»
 
-    multi sub prefix:<~>(Any --> Str:D)
+    multi prefix:<~>(Any --> Str:D)
 
 X<String context operator>.
 
@@ -848,7 +848,7 @@ TODO
 
 =head2 prefix C«+^»
 
-    multi sub prefix:<+^>(Any --> Int:D)
+    multi prefix:<+^>(Any --> Int:D)
 
 X<Integer bitwise negation operator>.
 
@@ -864,7 +864,7 @@ Please note that this has not yet been implemented.
 
 =head2 prefix C«?^»
 
-    multi sub prefix:<?^>(Mu --> Bool:D)
+    multi prefix:<?^>(Mu --> Bool:D)
 
 X<Boolean bitwise negation operator>.
 
@@ -873,7 +873,7 @@ same as C<< prefix:<!> >>.
 
 =head2 prefix C«^»
 
-    multi sub prefix:<^>(Any --> Range:D)
+    multi prefix:<^>(Any --> Range:D)
 
 I<upto> operator.X<|upto operator>
 
@@ -923,7 +923,7 @@ than postfix C<.meth>.
 
 =head2 infix C«*»
 
-    multi sub infix:<*>(Any, Any --> Numeric:D)
+    multi infix:<*>(Any, Any --> Numeric:D)
 
 X<Multiplication operator>.
 
@@ -932,7 +932,7 @@ is of the wider type. See L<Numeric> for details.
 
 =head2 infix C«/»
 
-    multi sub infix:</>(Any, Any --> Numeric:D)
+    multi infix:</>(Any, Any --> Numeric:D)
 
 X<Division operator>.
 
@@ -942,13 +942,13 @@ rule described in L<Numeric> holds.
 
 =head2 infix C«div»
 
-    multi sub infix:<div>(Int:D, Int:D --> Int:D)
+    multi infix:<div>(Int:D, Int:D --> Int:D)
 
 X<Integer division operator>. Rounds down.
 
 =head2 infix C«%»
 
-    multi sub infix:<%>($x, $y --> Numeric:D)
+    multi infix:<%>($x, $y --> Numeric:D)
 
 X<Modulo operator>. Coerces to L<Numeric> first.
 
@@ -959,32 +959,32 @@ Generally the following identity holds:
 
 =head2 infix C«%%»
 
-    multi sub infix:<%%>($a, $b --> Bool:D)
+    multi infix:<%%>($a, $b --> Bool:D)
 
 X<Divisibility operator>. Returns C<True> if C<$a %  $b == 0>.
 
 =head2 infix C«mod»
 
-    multi sub infix:<mod>(Int:D $a, Int:D $b --> Int:D)
+    multi infix:<mod>(Int:D $a, Int:D $b --> Int:D)
 
 X<Integer modulo operator>. Returns the remainder of an integer modulo operation.
 
 =head2 infix C«+&»
 
-    multi sub infix:<+&>($a, $b --> Int:D)
+    multi infix:<+&>($a, $b --> Int:D)
 
 Numeric bitwise I<AND> operator. Coerces both arguments to L<Int> and does a bitwise
 I<AND> operation assuming two's complement.X<|Numeric bitwise AND operator>
 
 =head2 infix C«+<»
 
-    multi sub infix:<< +< >>($a, $b --> Int:D)
+    multi infix:<< +< >>($a, $b --> Int:D)
 
 Integer bit shift to the left.X<|integer bit shift operator,left>
 
 =head2 infix C«+>»
 
-    multi sub infix:<< +> >>($a, $b --> Int:D)
+    multi infix:<< +> >>($a, $b --> Int:D)
 
 Integer bit shift to the right.X<|integer bit shift operator,right>
 
@@ -1010,13 +1010,13 @@ Please note that this has not yet been implemented.
 
 =head2 infix C«gcd»
 
-    multi sub infix:<gcd>($a, $b --> Int:D)
+    multi infix:<gcd>($a, $b --> Int:D)
 
 Coerces both arguments to L<Int> and returns the greatest common divisor.X<|greatest common divisor operator>
 
 =head2 infix C«lcm»
 
-    multi sub infix:<lcm>($a, $b --> Int:D)
+    multi infix:<lcm>($a, $b --> Int:D)
 
 Coerces both arguments to L<Int> and returns the least common multiple, that is
 the smallest integer that is evenly divisible by both arguments.X<|least common multiple operator>
@@ -1025,7 +1025,7 @@ the smallest integer that is evenly divisible by both arguments.X<|least common 
 
 =head2 infix C«+»
 
-    multi sub infix:<+>($a, $b --> Numeric:D)
+    multi infix:<+>($a, $b --> Numeric:D)
 
 X<Addition operator>.
 
@@ -1033,7 +1033,7 @@ Coerces both arguments to L<Numeric> and adds them.
 
 =head2 infix C«-»
 
-    multi sub infix:<->($a, $b --> Numeric:D)
+    multi infix:<->($a, $b --> Numeric:D)
 
 X<Subtraction operator>.
 
@@ -1042,7 +1042,7 @@ first.
 
 =head2 infix C«+|»
 
-    multi sub infix:<+|>($a, $b --> Int:D)
+    multi infix:<+|>($a, $b --> Int:D)
 
 X<Integer bitwise OR operator>.
 
@@ -1051,7 +1051,7 @@ operation.
 
 =head2 infix C«+^»
 
-    multi sub infix:<+^>($a, $b --> Int:D)
+    multi infix:<+^>($a, $b --> Int:D)
 
 X<Integer bitwise XOR operator>.
 
@@ -1072,7 +1072,7 @@ shorter buffer with zeroes.
 
 =head2 infix C«?|»
 
-    multi sub infix:<?|>($a, $b --> Bool:D)
+    multi infix:<?|>($a, $b --> Bool:D)
 
 X<Boolean logical OR operator>.
 
@@ -1099,7 +1099,7 @@ and C<$b> L«C<Int>|/type/Int». Returns an empty string if C<< $b <= 0 >>.
 
 =head2 infix C«xx»
 
-    multi sub infix:<xx>($a, $b --> List:D)
+    multi infix:<xx>($a, $b --> List:D)
 
 X<List repetition operator>.
 
@@ -1124,9 +1124,9 @@ is returned.
 
 =head2 infix C«~»
 
-    multi sub infix:<~>(Any,   Any)
-    multi sub infix:<~>(Str:D, Str:D)
-    multi sub infix:<~>(Buf:D, Buf:D)
+    multi infix:<~>(Any,   Any)
+    multi infix:<~>(Str:D, Str:D)
+    multi infix:<~>(Buf:D, Buf:D)
 
 X<String concatenation operator>.
 
@@ -1138,7 +1138,7 @@ Coerces both arguments to L<Str> and concatenates them. If both arguments are L<
 
 =head2 infix C«&»
 
-    multi sub infix:<&>($a, $b --> Junction:D) is assoc<list>
+    multi infix:<&>($a, $b --> Junction:D) is assoc<list>
 
 X<All junction operator>.
 
@@ -1149,7 +1149,7 @@ details.
 
 =head2 infix C«|»
 
-    multi sub infix:<|>($a, $b --> Junction:D) is assoc<list>
+    multi infix:<|>($a, $b --> Junction:D) is assoc<list>
 
 X<Any junction operator>.
 
@@ -1158,7 +1158,7 @@ details.
 
 =head2 infix C«^»
 
-    multi sub infix:<^>($a, $b --> Junction:D) is assoc<list>
+    multi infix:<^>($a, $b --> Junction:D) is assoc<list>
 
 X<One junction operator>.
 
@@ -1235,8 +1235,8 @@ precedence.
 
 =head2 infix C«but»
 
-    multi sub infix:<but>(Mu $obj1, Mu   $role) is assoc<non>
-    multi sub infix:<but>(Mu $obj1, Mu:D $obj2) is assoc<non>
+    multi infix:<but>(Mu $obj1, Mu   $role) is assoc<non>
+    multi infix:<but>(Mu $obj1, Mu:D $obj2) is assoc<non>
 
 Creates a copy of C<$obj> with C<$role> mixed in. Since C<$obj> is not
 modified, C<but> can be used to created immutable values with mixins.
@@ -1259,10 +1259,10 @@ comma. In this case conflicts will be reported at runtime.
 
 =head2 infix C«cmp»
 
-    multi sub infix:<cmp>(Any,       Any)
-    multi sub infix:<cmp>(Real:D,    Real:D)
-    multi sub infix:<cmp>(Str:D,     Str:D)
-    multi sub infix:<cmp>(Version:D, Version:D)
+    multi infix:<cmp>(Any,       Any)
+    multi infix:<cmp>(Real:D,    Real:D)
+    multi infix:<cmp>(Str:D,     Str:D)
+    multi infix:<cmp>(Version:D, Version:D)
 
 X<Generic, "smart" three-way comparator>.
 
@@ -1277,8 +1277,8 @@ if C<$a eqv $b>, then C<$a cmp $b> always returns C<Order::Same>.
 
 =head2 infix C«leg»
 
-    multi sub infix:<leg>(Any,   Any)
-    multi sub infix:<leg>(Str:D, Str:D)
+    multi infix:<leg>(Any,   Any)
+    multi infix:<leg>(Str:D, Str:D)
 
 X<String three-way comparator>. Short for I<less, equal or greater?>.
 
@@ -1290,7 +1290,7 @@ Coerces both arguments to L<Str>, and then does a lexicographic comparison.
 
 =head2 infix C«<=>»
 
-    multi sub infix:«<=>»($a, $b --> Order:D) is assoc<non>
+    multi infix:«<=>»($a, $b --> Order:D) is assoc<non>
 
 X<Numeric three-way comparator>.X<|spaceship operator>
 
@@ -1298,7 +1298,7 @@ Coerces both arguments to L<Real>, and then does a numeric comparison.
 
 =head2 infix C«..»
 
-    multi sub infix:<..>($a, $b --> Range:D) is assoc<non>
+    multi infix:<..>($a, $b --> Range:D) is assoc<non>
 
 X<Range operator>
 
@@ -1306,7 +1306,7 @@ Constructs a L<Range> from the arguments.
 
 =head2 infix C«..^»
 
-    multi sub infix:<..^>($a, $b --> Range:D) is assoc<non>
+    multi infix:<..^>($a, $b --> Range:D) is assoc<non>
 
 X<Right-open range operator>.
 
@@ -1314,7 +1314,7 @@ Constructs a L<Range> from the arguments, excluding the end point.
 
 =head2 infix C«^..»
 
-    multi sub infix:<^..>($a, $b --> Range:D) is assoc<non>
+    multi infix:<^..>($a, $b --> Range:D) is assoc<non>
 
 X<Left-open range operator>.
 
@@ -1322,7 +1322,7 @@ Constructs a L<Range> from the arguments, excluding the start point.
 
 =head2 infix C«^..^»
 
-    multi sub infix:<^..^>($a, $b --> Range:D) is assoc<non>
+    multi infix:<^..^>($a, $b --> Range:D) is assoc<non>
 
 X<Open range operator>
 
@@ -1332,13 +1332,13 @@ Constructs a L<Range> from the arguments, excluding both start and end point.
 
 =head2 infix C«==»
 
-    multi sub infix:<==>(Any, Any)
-    multi sub infix:<==>(Int:D, Int:D)
-    multi sub infix:<==>(Num:D, Num:D)
-    multi sub infix:<==>(Rational:D, Rational:D)
-    multi sub infix:<==>(Real:D, Real:D)
-    multi sub infix:<==>(Complex:D, Complex:D)
-    multi sub infix:<==>(Numeric:D, Numeric:D)
+    multi infix:<==>(Any, Any)
+    multi infix:<==>(Int:D, Int:D)
+    multi infix:<==>(Num:D, Num:D)
+    multi infix:<==>(Rational:D, Rational:D)
+    multi infix:<==>(Real:D, Real:D)
+    multi infix:<==>(Complex:D, Complex:D)
+    multi infix:<==>(Numeric:D, Numeric:D)
 
 X<Numeric equality operator>.
 
@@ -1362,9 +1362,9 @@ Equivalent to L«!=», at codepoint U+2260 (NOT EQUAL TO).
 
 =head2 infix C«<»
 
-    multi sub infix:«<»(Int:D, Int:D)
-    multi sub infix:«<»(Num:D, Num:D)
-    multi sub infix:«<»(Real:D, Real:D)
+    multi infix:«<»(Int:D, Int:D)
+    multi infix:«<»(Num:D, Num:D)
+    multi infix:«<»(Real:D, Real:D)
 
 X<Numeric less than operator>.
 
@@ -1373,9 +1373,9 @@ is smaller than the second.
 
 =head2 infix C«<=»
 
-    multi sub infix:«<=»(Int:D, Int:D)
-    multi sub infix:«<=»(Num:D, Num:D)
-    multi sub infix:«<=»(Real:D, Real:D)
+    multi infix:«<=»(Int:D, Int:D)
+    multi infix:«<=»(Num:D, Num:D)
+    multi infix:«<=»(Real:D, Real:D)
 
 X<Numeric less than or equal to operator>.
 
@@ -1390,9 +1390,9 @@ Equivalent to L«<=», at codepoint U+2264 (LESS-THAN OR EQUAL TO).
 
 =head2 infix C«>»
 
-    multi sub infix:«>»(Int:D, Int:D)
-    multi sub infix:«>»(Num:D, Num:D)
-    multi sub infix:«>»(Real:D, Real:D)
+    multi infix:«>»(Int:D, Int:D)
+    multi infix:«>»(Num:D, Num:D)
+    multi infix:«>»(Real:D, Real:D)
 
 X<Numeric greater than operator>.
 
@@ -1401,9 +1401,9 @@ is larger than the second.
 
 =head2 infix C«>=»
 
-    multi sub infix:«>=»(Int:D, Int:D)
-    multi sub infix:«>=»(Num:D, Num:D)
-    multi sub infix:«>=»(Real:D, Real:D)
+    multi infix:«>=»(Int:D, Int:D)
+    multi infix:«>=»(Num:D, Num:D)
+    multi infix:«>=»(Real:D, Real:D)
 
 X<Numeric greater than or equal to operator>.
 
@@ -1418,8 +1418,8 @@ Equivalent to L«>=», at codepoint U+2265 (GREATER-THAN OR EQUAL TO).
 
 =head2 infix C«eq»
 
-    multi sub infix:<eq>(Any,   Any)
-    multi sub infix:<eq>(Str:D, Str:D)
+    multi infix:<eq>(Any,   Any)
+    multi infix:<eq>(Str:D, Str:D)
 
 X<String equality operator>.
 
@@ -1430,8 +1430,8 @@ Mnemonic: I<equal>
 
 =head2 infix C«ne»
 
-    multi sub infix:<ne>(Mu,    Mu)
-    multi sub infix:<ne>(Str:D, Str:D)
+    multi infix:<ne>(Mu,    Mu)
+    multi infix:<ne>(Str:D, Str:D)
 
 X<String inequality operator>.
 
@@ -1442,8 +1442,8 @@ Mnemonic: I<not equal>
 
 =head2 infix C«gt»
 
-    multi sub infix:<gt>(Mu,    Mu)
-    multi sub infix:<gt>(Str:D, Str:D)
+    multi infix:<gt>(Mu,    Mu)
+    multi infix:<gt>(Str:D, Str:D)
 
 X<String greater than operator>.
 
@@ -1455,8 +1455,8 @@ Mnemonic: I<greater than>
 
 =head2 infix C«ge»
 
-    multi sub infix:<ge>(Mu,    Mu)
-    multi sub infix:<ge>(Str:D, Str:D)
+    multi infix:<ge>(Mu,    Mu)
+    multi infix:<ge>(Str:D, Str:D)
 
 X<String greater than or equal to operator>.
 
@@ -1468,8 +1468,8 @@ Mnemonic: I<greater or equal>
 
 =head2 infix C«lt»
 
-    multi sub infix:<lt>(Mu,    Mu)
-    multi sub infix:<lt>(Str:D, Str:D)
+    multi infix:<lt>(Mu,    Mu)
+    multi infix:<lt>(Str:D, Str:D)
 
 X<String less than operator>.
 
@@ -1481,8 +1481,8 @@ Mnemonic: I<less than>
 
 =head2 infix C«le»
 
-    multi sub infix:<le>(Mu,    Mu)
-    multi sub infix:<le>(Str:D, Str:D)
+    multi infix:<le>(Mu,    Mu)
+    multi infix:<le>(Str:D, Str:D)
 
 X<String less than or equal to operator>.
 
@@ -1494,20 +1494,20 @@ Mnemonic: I<less or equal>
 
 =head2 infix C«before»
 
-    multi sub infix:<before>(Any,       Any)
-    multi sub infix:<before>(Real:D,    Real:D)
-    multi sub infix:<before>(Str:D,     Str:D)
-    multi sub infix:<before>(Version:D, Version:D)
+    multi infix:<before>(Any,       Any)
+    multi infix:<before>(Real:D,    Real:D)
+    multi infix:<before>(Str:D,     Str:D)
+    multi infix:<before>(Version:D, Version:D)
 
 Generic ordering, uses the same semantics as L<cmp|#infix cmp>.
 Returns C<True> if the first argument is smaller than the second.
 
 =head2 infix C«after»
 
-    multi sub infix:<after>(Any,       Any)
-    multi sub infix:<after>(Real:D,    Real:D)
-    multi sub infix:<after>(Str:D,     Str:D)
-    multi sub infix:<after>(Version:D, Version:D)
+    multi infix:<after>(Any,       Any)
+    multi infix:<after>(Real:D,    Real:D)
+    multi infix:<after>(Str:D,     Str:D)
+    multi infix:<after>(Version:D, Version:D)
 
 Generic ordering, uses the same semantics as L<cmp|#infix cmp>.
 Returns C<True> if the first argument is larger than the second.
@@ -1568,7 +1568,7 @@ types must override method C<WHICH>.
 
 =head2 infix C«=:=»
 
-    multi sub infix:<=:=>(Mu \a, Mu \b)
+    multi infix:<=:=>(Mu \a, Mu \b)
 
 X<Container identity operator>. Returns C<True> if both arguments are bound to the same
 container. If it returns C<True>, it generally means that modifying one will
@@ -1607,13 +1607,13 @@ Here is an excerpt of built-in smart-matching functionality:
 
 =head2 infix C<=~=>
 
-    multi sub infix:<=~=>(Any, Any)
-    multi sub infix:<=~=>(Int:D, Int:D)
-    multi sub infix:<=~=>(Num:D, Num:D)
-    multi sub infix:<=~=>(Rational:D, Rational:D)
-    multi sub infix:<=~=>(Real:D, Real:D)
-    multi sub infix:<=~=>(Complex:D, Complex:D)
-    multi sub infix:<=~=>(Numeric:D, Numeric:D)
+    multi infix:<=~=>(Any, Any)
+    multi infix:<=~=>(Int:D, Int:D)
+    multi infix:<=~=>(Num:D, Num:D)
+    multi infix:<=~=>(Rational:D, Rational:D)
+    multi infix:<=~=>(Real:D, Real:D)
+    multi infix:<=~=>(Complex:D, Complex:D)
+    multi infix:<=~=>(Numeric:D, Numeric:D)
 
 The X<approximately-equal operator|infix, ≅>. Calculates the relative difference between
 the left-hand and right-hand sides and returns C<True> if the difference is
@@ -1935,7 +1935,7 @@ create C<Pair> objects.
 
 =head2 prefix C«not»
 
-    multi sub prefix:<not>(Mu $x --> Bool:D)
+    multi prefix:<not>(Mu $x --> Bool:D)
 
 Evaluates its argument in boolean context (and thus collapses L<Junction>s),
 and negates the result. Please note that C<not> is easy to misuse, see
@@ -1944,7 +1944,7 @@ L<traps|/language/traps#Loose_boolean_operators>.
 
 =head2 prefix C«so»
 
-    multi sub prefix:<so>(Mu $x --> Bool:D)
+    multi prefix:<so>(Mu $x --> Bool:D)
 
 Evaluates its argument in boolean context (and thus collapses L<Junction>s),
 and returns the result.
@@ -2016,8 +2016,8 @@ list:
 =head2 infix C«...»
 X<|...,operators>X<|...^,operators>X<|…,operators>X<|…^,operators>X<|lazy list,…>
 
-    multi sub infix:<...>(**@) is assoc<list>
-    multi sub infix:<...^>(**@) is assoc<list>
+    multi infix:<...>(**@) is assoc<list>
+    multi infix:<...^>(**@) is assoc<list>
 
 The X<sequence operator> is a generic operator to produce lazy lists.
 

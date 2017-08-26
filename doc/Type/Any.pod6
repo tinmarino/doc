@@ -111,7 +111,7 @@ into the newly created Array.
 
 Defined as:
 
-    multi sub    reverse(*@list  --> Seq:D)
+    multi        reverse(*@list  --> Seq:D)
     multi method reverse(List:D: --> Seq:D)
 
 Returns a L«C<Seq>|/type/Seq» with the same elements in reverse order.
@@ -303,9 +303,9 @@ X<|$ (item contextualizer)>
 Defined as:
 
     proto sub item(|) is pure
-    multi sub item(\x)
-    multi sub item(|c)
-    multi sub item(Mu $a)
+    multi item(\x)
+    multi item(|c)
+    multi item(Mu $a)
 
 Forces given object to be evaluated in item context and returns the value of it.
 

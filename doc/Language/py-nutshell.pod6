@@ -410,10 +410,10 @@ Named parameters start with a colon:
 Perl 6 supports multiple dispatch, so several signatures
 could be made available by declaring a routine as a C<multi>.
 
-    multi sub speak($word, $times) {
+    multi speak($word, $times) {
       say $word for ^$times
     }
-    multi sub speak(:$word, :$times) {
+    multi speak(:$word, :$times) {
         speak($word, $times);
     }
     speak('hi', 2);
@@ -670,7 +670,7 @@ Perl 6
 An alternative would be to use a trait:
 
     # declare the trait 'greeter'
-    multi sub trait_mod:<is>(Routine $r, :$greeter) {
+    multi trait_mod:<is>(Routine $r, :$greeter) {
         $r.wrap(sub {
             say 'hello';
             callsame;

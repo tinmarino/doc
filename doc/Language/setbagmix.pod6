@@ -95,8 +95,8 @@ only C<Set> arguments.
 
 =head3 infix (elem)
 
-    multi sub infix:<(elem)>($a, Any $b --> Bool)
-    multi sub infix:<(elem)>($a, Set $b --> Bool)
+    multi infix:<(elem)>($a, Any $b --> Bool)
+    multi infix:<(elem)>($a, Set $b --> Bool)
 
 X<Membership operator>.
 
@@ -127,8 +127,8 @@ of C<$b>, at codepoint U+2209 (NOT AN ELEMENT OF).
 
 =head3 infix (cont)
 
-    multi sub infix:<(cont)>(Any $a, $b --> Bool)
-    multi sub infix:<(cont)>(Set $a, $b --> Bool)
+    multi infix:<(cont)>(Any $a, $b --> Bool)
+    multi infix:<(cont)>(Set $a, $b --> Bool)
 
 X<Contains operator>.
 
@@ -159,8 +159,8 @@ C<$b>, at codepoint U+220C (DOES NOT CONTAIN AS MEMBER).
 
 =head3 infix (<=)
 
-    multi sub infix:<<(<=)>>(Any $a, Any $b --> Bool)
-    multi sub infix:<<(<=)>>(Setty $a, Setty $b --> Bool)
+    multi infix:<<(<=)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(<=)>>(Setty $a, Setty $b --> Bool)
 
 X<Subset of or equal to operator>.
 
@@ -193,8 +193,8 @@ Equivalent to C«!(<=)», at codepoint U+2288 (NEITHER A SUBSET OF NOR EQUAL TO)
 
 =head3 infix (<)
 
-    multi sub infix:<<(<)>>(Any $a, Any $b --> Bool)
-    multi sub infix:<<(<)>>(Setty $a, Setty $b --> Bool)
+    multi infix:<<(<)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(<)>>(Setty $a, Setty $b --> Bool)
 
 X<Subset of operator>.
 
@@ -227,8 +227,8 @@ Equivalent to C«!(<)», at codepoint U+2284 (NOT A SUBSET OF).
 
 =head3 infix (>=)
 
-    multi sub infix:<<(>=)>>(Any $a, Any $b --> Bool)
-    multi sub infix:<<(>=)>>(Setty $a, Setty $b --> Bool)
+    multi infix:<<(>=)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(>=)>>(Setty $a, Setty $b --> Bool)
 
 X<Superset of or equal to operator>.
 
@@ -261,8 +261,8 @@ NOR EQUAL TO).
 
 =head3 infix (>)
 
-    multi sub infix:<<(>)>>(Any $a, Any $b --> Bool)
-    multi sub infix:<<(>)>>(Setty $a, Setty $b --> Bool)
+    multi infix:<<(>)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(>)>>(Setty $a, Setty $b --> Bool)
 
 X<Superset of operator>.
 
@@ -294,8 +294,8 @@ Equivalent to C«!(>)», at codepoint U+2285 (NOT A SUPERSET OF).
 
 =head3 infix (<+)
 
-    multi sub infix:<<(<+)>>(Any $a, Any $b --> Bool)
-    multi sub infix:<<(<+)>>(Baggy $a, Baggy $b --> Bool)
+    multi infix:<<(<+)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(<+)>>(Baggy $a, Baggy $b --> Bool)
 
 X<Baggy subset of operator>.
 
@@ -316,8 +316,8 @@ Equivalent to L«(<+)», at codepoint U+227C (PRECEDES OR EQUAL TO).
 
 =head3 infix (>+)
 
-    multi sub infix:<<(>+)>>(Baggy $a, Baggy $b --> Bool)
-    multi sub infix:<<(>+)>>(Any $a, Any $b --> Bool)
+    multi infix:<<(>+)>>(Baggy $a, Baggy $b --> Bool)
+    multi infix:<<(>+)>>(Any $a, Any $b --> Bool)
 
 X<Baggy superset of operator>.
 
@@ -430,8 +430,8 @@ Equivalent to L«(-)».
 
 =head3 infix (^)
 
-    multi sub infix:<(^)>(Any $a, Any $b --> Setty)
-    multi sub infix:<(^)>(Set $a, Set $b --> Setty)
+    multi infix:<(^)>(Any $a, Any $b --> Setty)
+    multi infix:<(^)>(Set $a, Set $b --> Setty)
 
 
 X<Symmetric set difference operator>.

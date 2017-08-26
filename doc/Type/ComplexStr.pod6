@@ -75,7 +75,7 @@ checks if both L<Numeric> and L<Str> parts C<ACCEPTS> the C<$value>.
 
 =head2 infix cmp
 
-    multi sub infix:<cmp>(ComplexStr:D $a, ComplexStr:D $b)
+    multi infix:<cmp>(ComplexStr:D $a, ComplexStr:D $b)
 
 Compare two C<ComplexStr> objects.  The comparison is done on the C<Complex> value first and
 then on the C<Str> value. If you want to compare in a different order then you would

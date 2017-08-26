@@ -60,7 +60,7 @@ when the object is instantiated. Failing to do so will result in a runtime error
 
 =head2 X<trait is DEPRECATED|trait,is DEPRECATED (Attribute)>
 
-    multi sub trait_mod:<is>(Attribute:D $r, :$DEPRECATED!)
+    multitrait_mod:<is>(Attribute:D $r, :$DEPRECATED!)
 
 Marks an attribute as deprecated, optionally with a message what to use instead.
 
@@ -191,7 +191,7 @@ used with care.  Here be dragons.
 
 =head2 trait is required
 
-    multi sub trait_mod:<is> (Attribute $attr, :$required!)
+    multi trait_mod:<is> (Attribute $attr, :$required!)
 
 Marks an attribute as being required.  If a value is not provided
 during object construction, an exception is thrown.
@@ -213,7 +213,7 @@ constructors written using L<bless>.
 
 =head2 trait is rw
 
-    multi sub trait_mod:<is> (Attribute:D $attr, :$rw!)
+    multi trait_mod:<is> (Attribute:D $attr, :$rw!)
 
 Marks an attribute as read/write as opposed to the default
 C<readonly>.  The default accessor for the attribute will return a
