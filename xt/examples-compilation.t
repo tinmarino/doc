@@ -75,6 +75,13 @@ for @examples -> $eg {
         next;
     }
 
+    # 1189 - don't use "multi sub"
+    if $eg<contents>.contains('multi sub') {
+        flunk "$eg<file> chunk $eg<count>" ~ ' uses multi sub: use multi instead';
+        next;
+    }
+
+
     # Wrap each snippet in a block so it compiles but isn't run on EVAL
     # Further wrap in an anonymous class (so bare method works)
     # Add in empty routine bodies if needed
