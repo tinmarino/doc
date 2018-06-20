@@ -26,11 +26,6 @@ plan +@files;
 my $max-jobs = %*ENV<TEST_THREADS> // 2;
 my %output;
 
-sub test-promise($promise) {
-    my $file = $promise.command[*-1];
-    test-it(%output{$file}, $file);
-}
-
 sub test-it(Str $output, Str $file) {
     my $ok = True;
 
@@ -76,15 +71,18 @@ for @files -> $file {
         my $a = Proc::Async.new($*EXECUTABLE-NAME, '--doc', $file);
         %output{$file} = '';
         $a.stdout.tap(-> $buf { %output{$file} = %output{$file} ~ $buf });
-        push @jobs: $a.start;
-        if +@jobs > $max-jobs {
-            test-promise(await @jobs.shift)
-        }
+        push @jobs: Promise.anyof(
+            $a.start.then({ test-it(%output{$file}, $file) }),
+            Promise.in(60)
+        );
     } else {
-        test-it($file.IO.slurp, $file);
+        push @jobs: Promise.anyof(
+            start { test-it($file.IO.slurp, $file) },
+            Promise.in(60)
+        );
     }
 }
 
-for @jobs.map: {await $_} -> $r { test-promise($r) }
+await Promise.allof(@jobs);
 
 # vim: expandtab shiftwidth=4 ft=perl6
