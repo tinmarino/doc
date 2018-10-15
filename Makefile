@@ -80,11 +80,9 @@ help:
 	@echo "docker-testall:      run all tests (in container)"
 	@echo "docker-run:          run the development webserver (in container)"
 
-start: run
-
 run:
 	@echo "Starting local server…"
-	./app-start
+	util/site
 
 docker-image:
 	docker build -t $(DOCKER_IMAGE_NAME) .
@@ -107,6 +105,7 @@ docker-ctest: docker-image
 
 docker-testall: docker-test docker-xtest docker-ctest
 
+# TODO make this work post-cro
 docker-run: docker-image
 	docker run --rm -it -p $(DOCKER_HOST_PORT):3000 -v $(REPO_PATH):/perl6/doc/$(SELINUX_OPT) \
 		$(DOCKER_IMAGE_NAME) /bin/bash -c './app-start' &

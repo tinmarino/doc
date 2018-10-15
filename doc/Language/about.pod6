@@ -47,11 +47,10 @@ To generate the documentation into the C<html/> folder, run:
 perl6 htmlify.p6
 =end code
 
-To host the documentation from a web server, have Perl 5
-and Mojolicious::Lite installed, then run:
+To run the site locally, run:
 
 =begin code :lang<shell>
-perl app.pl daemon
+util/site
 =end code
 
 =head1 Contributing
