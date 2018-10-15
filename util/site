@@ -2,13 +2,40 @@
 
 use Cro::HTTP::Router;
 use Cro::HTTP::Server;
+use Pod::To::HTML;
+
+=begin overview
+
+Using the C<Perl 6 Pod> documentation available in the C<doc> directory,
+this script will serve out a web app; It will monitor changes to
+the source directories, so pushing an updated change into the
+source directory will render out the changes.
+
+The generated HTML will be cached on disk.
+
+=end overview
+
+# Define routes we care about
 my $application = route {
-    get -> 'greet', $name {
-        content 'text/plain', "Hello, $name!";
+    get -> '' {
+        content 'text/plain', "It's the home page"
     }
+    for <language programs type> -> $section {
+        get -> $section, $path {
+            content 'text/html', pod-to-html("doc/{tc $section}/{$path}.pod6")
+        }
+    }
+}
+
+# Helper routines
+sub pod-to-html($file) {
+    Pod::To::HTML.render($file.IO);
 }
 
 my Cro::Service $hello = Cro::HTTP::Server.new:
     :host<localhost>, :port<7777>, :$application;
 $hello.start;
+
+
+# ^C to kill the app in your shell
 react whenever signal(SIGINT) { $hello.stop; exit; }
