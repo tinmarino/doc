@@ -20,16 +20,23 @@ my $application = route {
     get -> '' {
         content 'text/plain', "It's the home page"
     }
+    # Simple pod to HTML conversion
     for <language programs type> -> $section {
         get -> $section, $path {
             content 'text/html', pod-to-html("doc/{tc $section}/{$path}.pod6")
         }
     }
+    # Raw files
+    get -> 'images', $image {
+        content 'image/svg+xml', "html/images/{$image}".IO.slurp
+    }
 }
 
 # Helper routines
+my $template-header = "template/header.html".IO.slurp;
+
 sub pod-to-html($file) {
-    Pod::To::HTML.render($file.IO);
+    Pod::To::HTML.render($file.IO, :header($template-header));
 }
 
 my Cro::Service $hello = Cro::HTTP::Server.new:
