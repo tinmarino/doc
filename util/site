@@ -24,8 +24,11 @@ my $application = route {
     for <language programs type> -> $section {
         get -> $section, $path {
             my $file = "doc/{tc $section}/{$path}";
-            if $path.ends-with('.pod6') {
+            if $file.ends-with('.pod6') {
                 content 'text/plain', $file.IO.slurp
+            }
+            if $file.ends-with('.html') {
+                $file .= chop: 5
             }
             content 'text/html', pod-to-html($file ~ '.pod6');
         }
