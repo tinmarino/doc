@@ -369,12 +369,14 @@ td, th {
         padding-top: 0.25em;
     }
 }
+/*
 #content:not(.content_HomePage):not(.content_404) {
     background-repeat: no-repeat;
     background-position: right 2rem top 2rem;
     background-size: 243px;
     background-image: url(/images/Camelia-faded.svg);
 }
+*/
 
 @media (min-width: 65em) {
     #content {
