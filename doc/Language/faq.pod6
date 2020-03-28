@@ -302,22 +302,22 @@ classes into the same compilation unit.
 
 =head1 Common operations
 
-=head2 String: How can I parse and get a L<number|language/numerics> from a L<string|language/type/Str>
+=head2 String: How can I parse and get a L<number|/language/numerics> from a L<string|/language/type/Str>
 
-Use the L<+ prefix|language/operators#prefix_+>:
+Use the L<+ prefix|/language/operators#prefix_+>:
 
 =begin code :ok-test<dd>
 say "42.123456789123456789";  # OUTPUT: «42.123456789123456789␤»
 say +"42.4e-2";               # OUTPUT: «0.424␤»
 =end code
 
-This method can numify any string you could enter as a L<litteral number|language/syntax#Number_literals>.
-L<val|routine/val> routine converts it to L<allomorph|language/glossary#Allomorph>.
-L<unival|routine/unival> routine converts one unicode codepoint.
+This method can numify any string you could enter as a L<litteral number|/language/syntax#Number_literals>.
+L<val|/routine/val> routine converts it to L<allomorph|/language/glossary#Allomorph>.
+L<unival|/routine/unival> routine converts one unicode codepoint.
 
 =head2 String: How can I check if a string contains a substring and if so, how can I get indices of matches
 
-Use L<.contains|type/Str#method_contains> or L<.indices|type/Str#method_indices>:
+Use L<.contains|/type/Str#method_contains> or L<.indices|/type/Str#method_indices>:
 
 =begin code :ok-test<dd>
 "az and az and az again".contains("az"); # OUTPUT: «True␤»
@@ -326,13 +326,13 @@ Use L<.contains|type/Str#method_contains> or L<.indices|type/Str#method_indices>
 
 =head2 String: How can I get the hexadecimal representation of a string
 
-First convert it to a L<Blob|type/Blob> with L<.encode|routine/encode>.
+First convert it to a L<Blob|/type/Blob> with L<.encode|/routine/encode>.
 
 =begin code :ok-test<dd>
 say "I ❤ 🦋".encode>>.base(16);  OUTPUT: «(49 20 E2 9D A4 20 F0 9F A6 8B)␤»
 =end code
 
-Note that L<.gist|routine/gist> or L<.raku|routine/perl> methods are your friends when debugging:
+Note that L<.gist|/routine/gist> or L<.raku|/routine/perl> methods are your friends when debugging:
 
 =begin code
 say "I ❤ 🦋".encode.raku;  # OUTPUT: «utf8.new(73,32,226,157,164,32,240,159,166,139)␤»
@@ -341,13 +341,13 @@ say "I ❤ 🦋".encode.gist;  # OUTPUT: «utf8:0x<49 20 E2 9D A4 20 F0 9F A6 8B
 
 =head2 String: How can I remove from a string some characters by index
 
-Use L<.comb|routine/comb> to transform it to a L<Seq|type/Seq>, then the L<(-) infix|language/operators#infix_(-),_infix_\\> to remove the unwanted indices:
+Use L<.comb|/routine/comb> to transform it to a L<Seq|/type/Seq>, then the L<(-) infix|/language/operators#infix_(-),_infix_\\> to remove the unwanted indices:
 
 =begin code :ok-test<dd>
 say '0123456789'.comb[(^* (-) (1..3, 8).flat).keys.sort].join;  # OUTPUT: «045679␤»
 =end code
 
-If the string is large, L<.comb|routine/comb> can take time. In which case, L<.substr-rw|routine/substr-rw> is faster:
+If the string is large, L<.comb|/routine/comb> can take time. In which case, L<.substr-rw|/routine/substr-rw> is faster:
 
 =begin code :ok-test<dd>
 multi postcircumfix:<[- ]> (Str:D $str is copy, +@indices) {
@@ -363,7 +363,7 @@ say '0123456789'[- 1..3, 8 ];  # OUTPUT: «045679␤»
 
 =head2 String: How can I split a string in equal parts
 
-L<.comb|routine/comb> is accepting a L<Int|type/Int> or a L<Regex|type/Regex>:
+L<.comb|/routine/comb> is accepting a L<Int|/type/Int> or a L<Regex|/type/Regex>:
 
 =begin code :ok-test<dd>
 .say for 'abcdefghijklmnopqrstuvwxyz'.comb: 8;  # OUTPUT: «abcdefgh␤ijklmnop␤qrstuvwx␤yz»
@@ -372,7 +372,7 @@ L<.comb|routine/comb> is accepting a L<Int|type/Int> or a L<Regex|type/Regex>:
 
 =head2 List: How can I remove duplicates items in a list
 
-Use L<.unique|routine/unique>:
+Use L<.unique|/routine/unique>:
 
 =begin code :ok-test<dd>
 (1, 2, 3, 2, 3, 1, 1, 0).unique;  # OUTPUT: «(1 2 3 0)␤»
@@ -380,7 +380,7 @@ Use L<.unique|routine/unique>:
 
 =head2 List: How can I delete an element from a list
 
-To delete by index, use L<.splice|routine/splice>:
+To delete by index, use L<.splice|//routine/splice>:
 
 =begin code :ok-test<dd>
 my @a = <3 18 4 8 92 14 30>;
@@ -388,7 +388,7 @@ say @a.splice(3, 1);  # OUTPUT: «[8]␤»
 say @a;               # OUTPUT: «[3 18 4 92 14 30]␤»
 =end code
 
-Note that the L<delete subscript|language/subscripts#index-entry-:delete_(subscript_adverb)> replaces the element with its natural (i.e. default) state. Here (Any):
+Note that the L<delete subscript|/language/subscripts#index-entry-:delete_(subscript_adverb)> replaces the element with its natural (i.e. default) state. Here (Any):
 
 =begin code :ok-test<dd>
 my @a = <3 18 4 8 92 14 30>;
@@ -396,7 +396,7 @@ my @a = <3 18 4 8 92 14 30>;
 say @a;  # OUTPUT: «[3 18 4 (Any) 92 14 30]␤»
 =end code
 
-To delete by value, use L<.grep|routine/grep>:
+To delete by value, use L<.grep|/routine/grep>:
 
 =begin code :ok-test<dd>
 my @letters = <a b c>;
@@ -406,7 +406,7 @@ say @letters;  # OUTPUT: «[a c]␤»
 
 =head2 List: How can I show index while looping through a list
 
-Use L<.kv|routine/kv> or <.pairs|routine/pairs>:
+Use L<.kv|/routine/kv> or <.pairs|/routine/pairs>:
 
 =begin code :ok-test<dd>
 my @aa = 8 .. 12;
@@ -416,7 +416,7 @@ say "$_.key(): $_.value()" for @aa.pairs;  # OUTPUT: «0: 8␤1: 9␤2: 10␤3: 
 
 =head2 List: How can I concatenate lists
 
-Use the slip prefix (L<\||language/operators#prefix_|>) or the <flat|routine/flat> routine
+Use the slip prefix (L<C<|>|/language/operators#prefix_|>) or the <flat|/routine/flat> routine
 
 =begin code :ok-test<dd>
 my @a = <a b c>;
@@ -425,11 +425,11 @@ my @ab = |@a, |@b; say @ab;  # OUTPUT: «[a b c d e f]␤»
 say (@a, @b).flat;           # OUTPUT: «(a b c d e f)␤»   
 =end code
 
-Note that flat recursively flattens L<non-containerized|language/containers> L<iterables|type/Iterable>.
+Note that flat recursively flattens L<non-containerized|/language/containers> L<iterables|/type/Iterable>.
 
 =head2 List: How can I generate a list of random numbers
 
-Use <.roll|routine/roll>:
+Use <.roll|/routine/roll>:
 
 =begin code
 say (1..100).roll(100);
